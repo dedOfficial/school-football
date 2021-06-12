@@ -155,17 +155,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 })();
 /* Индекс слайда по умолчанию */
 var slideIndex = 1;
-showSlides(slideIndex);
+// showSlides(slideIndex);
+var intervalID = setInterval(showByInterval, 5000);
+function showByInterval() {
+    showSlides((slideIndex += 1));
+}
 /* Функция увеличивает индекс на 1, показывает следующй слайд*/
 function plusSlide() {
+    clearInterval(intervalID);
+    intervalID = setInterval(showByInterval, 5000);
     showSlides((slideIndex += 1));
 }
 /* Функция уменьшяет индекс на 1, показывает предыдущий слайд*/
 function minusSlide() {
+    clearInterval(intervalID);
+    intervalID = setInterval(showByInterval, 5000);
     showSlides((slideIndex -= 1));
 }
 /* Устанавливает текущий слайд */
 function currentSlide(n) {
+    clearInterval(intervalID);
+    intervalID = setInterval(showByInterval, 5000);
     showSlides((slideIndex = n));
 }
 /* Основная функция слайдера */
@@ -174,11 +184,9 @@ function showSlides(n) {
     var dots = document.querySelectorAll(".about__slider-dot");
     if (n > slides.length) {
         slideIndex = 1;
-        console.log("first IF");
     }
     if (n < 1) {
         slideIndex = slides.length;
-        console.log("second IF");
     }
     slides.forEach(function (slide, i) {
         slide.classList.add("d-none");
